@@ -1,0 +1,172 @@
+{%extends'users/layout.html'%}
+{%block appoint%}
+<div class="row justify-content-center">
+                    
+    <div class="col-md-9 py-3"  id="reg">
+        <form action="" method="post">
+            {%set m= get_flashed_messages(with_categories=True)%}
+            {%if m:%}
+                {%for x,y in m%}
+                    {% if x =="error"%}
+                        <div class="alert alert-info">{{y}}</div>
+                    {%else:%}
+                        <div class="alert alert-info">{{y}}</div>
+                    {%endif%}
+                {%endfor%}
+                {%endif%}
+            <h1 class="text-center">Patient Registration Form</h1>
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <div class="col-mb-1 " name="gender">          
+                {{patreg.gender.label}}
+                {% if patreg.gender.errors %}
+            {% for j in patreg.gender.errors %}
+            <p style="color: red;">{{j}}</p>
+            {%endfor%}
+            {%endif%}
+                {{patreg.gender}}
+            </div>
+            <div class="col-mb-1 " >
+            {{patreg.fname.label}}
+            {% if patreg.fname.errors %}
+            {% for j in patreg.fname.errors %}
+            <p style="color: red;">{{j}}</p>
+            {%endfor%}
+            {%endif%}
+            {{patreg.fname(class_='form-control')}}
+            </div>
+            <div class="col-mb-1">
+                {{patreg.lname.label}}
+                {% if patreg.lname.errors %}
+                {% for j in patreg.lname.errors %}
+                <p style="color: red;">{{j}}</p>
+                {%endfor%}
+                {%endif%}
+                {{patreg.lname(class_='form-control')}}
+                </div>
+            <div class="col-mb-1">
+            {{patreg.phn.label}}
+            {% if patreg.phn.errors %}
+            {% for j in patreg.phn.errors %}
+            <p style="color: red;">{{j}}</p>
+            {%endfor%}
+            {%endif%}
+            {{patreg.phn(class_='form-control')}}
+            </div>
+            <div class="col-mb-1">
+            {{patreg.address.label}}
+            {% if patreg.address.errors %}
+            {% for j in patreg.address.errors %}
+            <p style="color: red;">{{j}}</p>
+            {%endfor%}
+            {%endif%}
+            {{patreg.address(class_='form-control')}}
+            </div>
+            <div class="col-mb-1">
+            {{patreg.Dob.label}}
+            {% if patreg.Dob.errors %}
+            {% for j in patreg.Dob.errors %}
+            <p style="color: red;">{{j}}</p>
+            {%endfor%}
+            {%endif%}
+            {{patreg.Dob(class_='form-control')}}
+            </div>            
+            <div class="col-mb-1">
+                {{patreg.email.label}}
+                {% if patreg.email.errors %}
+            {% for j in patreg.email.errors %}
+            <p style="color: red;">{{j}}</p>
+            {%endfor%}
+            {%endif%}
+                {{patreg.email(class_='form-control')}}
+                </div>
+            <div class="col-mb-1" style="display: none;" name="preg">
+            <h2 class="dis" >Are You Pregnant?</h2>
+            {{patreg.pregstatus.label}}
+            {% if patreg.pregstatus.errors %}
+            {% for j in patreg.pregstatus.errors %}
+            <p style="color: red;">{{j}}</p>
+            {%endfor%}
+            {%endif%}
+            {{patreg.pregstatus}}
+            </div>
+            <div class="col-mb-1" style="display: none;" name="edd">
+            {{patreg.EDD.label}}
+            {% if patreg.EDD.errors %}
+            {% for j in patreg.EDD.errors %}
+            <p style="color: red;">{{j}}</p>
+            {%endfor%}
+            {%endif%}
+            {{patreg.EDD(class_='form-control')}}
+            </div>
+            <div class="col-mb-1">
+            {{patreg.username.label}}
+            {% if patreg.username.errors %}
+            {% for j in patreg.username.errors %}
+            <p style="color: red;">{{j}}</p>
+            {%endfor%}
+            {%endif%}
+            {{patreg.username(class_='form-control')}}
+            </div>
+            <div class="col-mb-1">
+           {{patreg.pwd.label}}
+           {% if patreg.pwd.errors %}
+            {% for j in patreg.pwd.errors %}
+            <p style="color: red;">{{j}}</p>
+            {%endfor%}
+            {%endif%}
+           {{patreg.pwd(class_='form-control')}}
+            </div>
+            <div class="col-mb-1">
+            {{patreg.cpwd.label}}
+            {% if patreg.cpwd.errors %}
+            {% for j in patreg.cpwd.errors %}
+            <p style="color: red;">{{j}}</p>
+            {%endfor%}
+            {%endif%}
+            {{patreg.cpwd(class_='form-control')}}
+            </div>
+            <div class="col-mb-1">
+            {{patreg.subbtn(class_='form-control btn btn-primary')}}
+            </div>
+            <h3 class="text-center mt-2 py-2">Already Have An Account? <a href="{{url_for('patient_login')}}">Login Here</a></h3>            
+        </form>
+    </div>
+   </div>
+</div>
+{%endblock%}
+
+{% block js %}
+<script>
+    $(document).ready(function(){
+        // Function to toggle the visibility of pregnancy-related fields
+        function togglePregnancyFields() {
+            var gender = $('[name="gender"]:checked').val();
+            if (gender === 'Female') {
+                $('[name="preg"]').show();
+                var pregStatus = $('[name="pregstatus"]:checked').val();
+                if (pregStatus === '1') {
+                    $('[name="edd"]').show();
+                } else {
+                    $('[name="edd"]').hide();
+                }
+            } else {
+                $('[name="preg"]').hide();
+                $('[name="edd"]').hide();
+            }
+        }
+
+        // Initially, hide pregnancy-related fields
+        togglePregnancyFields();
+
+        // Listen for click events on the gender radio buttons
+        $('[name="gender"]').click(function() {
+            togglePregnancyFields();
+        });
+
+        // Listen for click events on the pregnancy status radio buttons
+        $('[name="pregstatus"]').click(function() {
+            togglePregnancyFields();
+        });
+    });
+</script>
+{% endblock %}

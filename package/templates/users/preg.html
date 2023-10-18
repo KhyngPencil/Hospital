@@ -1,0 +1,47 @@
+{% extends 'users/doclayout.html'%}
+{%block banner2%}
+<div class="row">
+    <div class="col-md-2 " style="background-color: rgb(215, 215, 215);">
+        <div class="mb-5 mt-3" >
+         <a href="/doctor/dashboard" class="btn btn-outline-primary"><img src="/static/home.png" style="height: 30px;">Home </a>
+        </div>
+        <div class="mb-5">
+            <a href="/approvedappointments/" class="btn btn-outline-primary"><img src="/static/medical-appointment.png" style="height: 30px;"> Appointments</a>
+        </div>
+        <div class="mb-5">
+            <a href="/appointments/" class="btn btn-outline-primary"><img src="/static/medical-appointment.png" style="height: 30px;">Pending Appointments</a>
+        </div>
+        <div class="mb-5">
+            <a href="/allpregnants/" class="btn btn-outline-primary"><img src="/static/pregnant.png" style="height: 30px;">All Pregnant Patients</a>
+        </div>
+    </div>
+<div class="col-md-10" style="min-height: 400px;">
+    <h1 class="my-5 mx-5 text-center">All Pregnant Patients</h1>
+    <div class="col py-5 px-4">
+        {%if pregs%}
+        <table class="table table-bordered table-striped">
+       
+            <tr>
+                <th>S/N</th>
+                <th>Patient Name</th>                                
+                <th>EDD</th>
+                               
+            </tr>
+            {%for p in pregs%}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{p.patdeets.fullname}}</td>
+                <th>{{p.edd}}</th>               
+            </tr>
+            {%endfor%}
+            {%else%}
+            <div >
+            <h1 class="alert alert-info">No Records Found</h1>
+            </div>
+            {%endif%}
+        
+       </table>
+      </div>
+</div>
+</div>
+{% endblock%}

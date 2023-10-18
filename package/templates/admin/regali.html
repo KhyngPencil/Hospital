@@ -1,0 +1,59 @@
+{% extends 'admin/admlayout.html'%}
+{%block banner2%}
+<div class="row">
+    <div class="col-md-2 " style=" min-height: 100px; background-color: rgb(215, 215, 215);">
+        <div class="mb-5 mt-3" >
+         <a href="/admin/dashboard" class="btn btn-outline-primary"><img src="/static/home.png" style="height: 30px;">Home </a>
+        </div>
+        <div class="mb-5">
+            <a href="/admin/allpatients/" class="btn btn-outline-primary"><img src="" style="height: 30px;"> Patients</a>
+        </div>
+        <div class="mb-5">
+            <a href="/admin/alldoctors/" class="btn btn-outline-primary"><img src="" style="height: 30px;">Doctors</a>
+        </div>
+        <div class="mb-5">
+            <a href="#" class="btn btn-outline-primary"><img src="" style="height: 30px;">Patient Appointments</a>
+        </div>
+        <div class="mb-5">
+            <a href="/admin/specs" class="btn btn-outline-primary"><img src="" style="height: 30px;">Specialization</a>
+        </div>
+        <div class="mb-5">
+            <a href="/admin/aliments" class="btn btn-outline-primary"><img src="" style="height: 30px;">Aliments</a>
+        </div>
+        <div class="mb-5">
+            <a href="/admin/diagnosis" class="btn btn-outline-primary"><img src="" style="height: 30px;">Ailments And Diagnosis</a>
+        </div>
+        <div class="mb-5">
+            <a href="/admin/preg/" class="btn btn-outline-primary"><img src="" style="height: 30px;">Pregnant Patients</a>
+        </div>
+    </div>
+<div class="col-md-10" style=" min-height: 400px;">
+    <div class="row">
+    <div class="col-12">
+    <h1 class="py-5 mx-5 text-center my-3" >Aliments</h1>
+    </div>
+    <div class="col-12 py-5 px-4">
+       <form action="" method="post">
+        {%set m= get_flashed_messages(with_categories=True)%}
+        {%if m:%}
+            {%for x,y in m%}
+                {% if x =="error"%}
+                    <div class="alert alert-info">{{y}}</div>
+                {%else:%}
+                    <div class="alert alert-info">{{y}}</div>
+                {%endif%}
+            {%endfor%}
+            {%endif%}
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <div class="mb-1">
+                {{ali.alimname.label}}
+                {{ali.alimname(class_=('form-control'))}}
+            </div>
+            {{ali.alimbtnsubmit(class_=('form-control btn btn-outline-success'))}}
+       </form>
+        
+       </div>
+       </div>
+</div>
+</div>
+{% endblock%}

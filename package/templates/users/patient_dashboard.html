@@ -1,0 +1,28 @@
+{% extends 'users/layout.html'%}
+{%block banner2%}
+<div class="row">
+<div class="col-md-2 " style=" min-height: 100px; background-color: rgb(215, 215, 215);">
+    <div class="mb-5 mt-5" >
+     <a href="{{url_for('patient_dashboard')}}" class="btn btn-outline-primary" ><img src="/static/home.png" style="height: 30px;" class="mx-3">   Home</a>
+    </div>
+    <div class="mb-5 mt-2">
+        <a href="{{url_for('book_appointment')}}"  class="btn btn-outline-primary"><img src="/static/appointment-book.png" style="height: 30px;" class="mx-1">   Book Appointments</a>
+    </div>
+    <div class="mb-5 mt-2">
+        <a href="{{url_for('patient_appointment')}}" class="btn btn-outline-primary" ><img src="/static/medical-appointment.png" style="height: 30px;" class="mx-3">  Appointments</a>
+    </div>
+    <div class="mb-5 mt-2">
+        <a href="{{url_for('patient_declined_appointment')}}" class="btn btn-outline-primary" ><img src="/static/calendar.png" style="height: 30px;" class="mx-3"> Declined Appointments</a>
+    </div>
+    <div class="mb-5 mt-2">
+        <a href="{{url_for('diagnosis_feedback')}}" class="btn btn-outline-primary" ><img src="/static/medical-appointment.png" style="height: 30px;" class="mx-3">Diagnosis Feedback</a>
+    </div>
+    
+    
+</div>
+<div class="col-md-10" style=" min-height: 400px;font: 1em sans-serif;">
+    <h1 class="my-5 mx-5 px-5">Welcome {{userdeets.fullname}}</h1>
+    <h1 class="my-5 mx-5 px-5">This Is Your Dashboard</h1>
+</div>
+</div>
+{% endblock%}

@@ -1,0 +1,53 @@
+{% extends 'users/layout.html'%}
+{%block banner2%}
+<div class="row">
+<div class="col-md-2 " style="min-height: 100px; background-color: rgb(215, 215, 215);">
+    <div class="mb-5 mt-5 py-3" >
+     <a href="{{url_for('patient_dashboard')}}" class="btn btn-outline-primary" ><img src="/static/home.png" style="height: 30px;" class="mx-3">   Home</a>
+    </div>
+    <div class="mb-5 mt-2 py-3">
+        <a href="{{url_for('book_appointment')}}" class="btn btn-outline-primary"><img src="/static/appointment-book.png" style="height: 30px;" class="mx-3">   Book Appointments</a>
+    </div>
+    <div class="mb-5 mt-2">
+        <a href="{{url_for('patient_appointment')}}" class="btn btn-outline-primary" ><img src="/static/medical-appointment.png" style="height: 30px;" class="mx-3">  Appointments</a>
+    </div>
+    <div class="mb-5 mt-2">
+        <a href="{{url_for('patient_declined_appointment')}}" class="btn btn-outline-primary" ><img src="/static/calendar.png" style="height: 30px;" class="mx-3"> Declined Appointments</a>
+    </div>
+    <div class="mb-5 mt-2">
+        <a href="{{url_for('diagnosis_feedback')}}" class="btn btn-outline-primary" ><img src="/static/medical-appointment.png" style="height: 30px;" class="mx-3">Diagnosis Feedback</a>
+    </div>
+</div>
+<div class="col-md-10" style="min-height: 400px;">
+    <h1 class="my-5 mx-5 text-center">All Feedbacks</h1>
+    {%if patdeets%}
+    <div class="col py-5 px-4">
+       <table class="table table-bordered table-striped">
+        
+            <tr>
+                <th>S/N</th>
+                <th>Diagnosis Date</th>
+                <th>Doctor </th>
+                <th>Ailment</th>
+                <th>Advice</th>                
+            </tr>
+            {% for p in patdeets %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{p.diagnosis_date}}</td>
+                <td>{{p.docdeets.doctorfullname}}</td>
+                <td>{{p.aildeets.ailments}}</td>
+                <td>{{p.advice}}</td>
+            </tr>
+            {%endfor%}
+        
+       </table>
+      </div>
+      {%else%}
+      <div class="col alert alert-info">
+        <h1>You Need To Have Booked An Appointment To Get Any Feedback</h1>
+      </div>
+      {%endif%}
+</div>
+</div>
+{% endblock%}

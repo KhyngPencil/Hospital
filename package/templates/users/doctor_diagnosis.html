@@ -1,0 +1,41 @@
+{% extends 'users/doclayout.html'%}
+{%block banner2%}
+<div class="row">
+    <div class="col-md-2 " style=" background-color: rgb(215, 215, 215);">
+        <div class="mb-5 mt-3" >
+         <a href="/doctor/dashboard" class="btn btn-outline-primary"><img src="/static/home.png" style="height: 30px;">Home </a>
+        </div>
+        <div class="mb-5">
+            <a href="/approvedappointments/" class="btn btn-outline-primary"><img src="/static/medical-appointment.png" style="height: 30px;"> Appointments</a>
+        </div>
+        <div class="mb-5">
+            <a href="/appointments/" class="btn btn-outline-primary"><img src="/static/medical-appointment.png" style="height: 30px;">Pending Appointments</a>
+        </div>
+        <div class="mb-5">
+            <a href="/doc/preg" class="btn btn-outline-primary"><img src="/static/pregnant.png" style="height: 30px;">All Pregnant Patients</a>
+        </div>
+    </div>
+<div class="col-md-10" style="min-height: 400px;">
+    <h1 class="my-5 mx-5 text-center">Diagnosis Feedback</h1>
+    <div class="col py-5 px-4 text-center" >
+        <form method="post" class="text-center">
+            <label >Patient Name</label>
+            <input type="text" value="{{sesdeets.patientdeets.fullname}}" class="form-control" disabled>
+            <label for="date">Date Of Diagnosis</label>
+            <input type="date" name="date" class="form-control">       
+        <label class="text-center my-3">Ailment</label>
+        <select name="ailment" class="form-control">
+            <option>Please Select </option>
+            {%for a in alim%}
+            <option value="{{a.id_ailments}}">{{a.ailments}}</option>
+            {%endfor%}
+        </select>
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        <label class="my-3">Advice</label>
+        <input type="text" name="advice" class="form-control">
+        <button class="btn btn-outline-primary form-control btn-lg">Submit</button>
+        </form>
+      </div>
+</div>
+</div>
+{% endblock%}

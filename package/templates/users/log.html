@@ -1,0 +1,34 @@
+{%extends 'users/layout.html'%}
+
+{%block appoint%}
+<div class="row justify-content-center">
+    <div class="col-md-9 py-3"  >
+        <h1 class="text-center">Patient Login Form</h1>
+        <form action="" method="post" >
+            {%set m= get_flashed_messages(with_categories=True)%}
+            {%if m:%}
+                {%for x,y in m%}
+                    {% if x =="error"%}
+                        <div class="alert alert-info">{{y}}</div>
+                    {%else:%}
+                        <div class="alert alert-info">{{y}}</div>
+                    {%endif%}
+                {%endfor%}
+                {%endif%}
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <div class="mb-1">
+                {{log.username.label}}
+                {{log.username(class_=('form-control'))}}
+            </div>
+            <div class="mb-1">
+                {{log.pwd.label}}
+                {{log.pwd(class_=('form-control'))}}
+            </div>
+            {{log.btnlogin(class_=('form-control btn btn-primary'))}}
+            <h3 class="text-center mt-2 py-2">Don't Have An Account Yet?<a href="{{url_for('register')}}">CLICK HERE TO SIGN UP</a></h3>
+            
+        </form>
+    </div>
+   
+</div>
+{% endblock%}

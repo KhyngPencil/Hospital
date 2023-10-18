@@ -1,0 +1,72 @@
+{%extends 'users/doclayout.html'%}
+
+{%block appoint%}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+       
+        <h1 class="text-center">Doctor Registration Form</h1>
+        <h3 class="text-center">Please Fill The Form Below Correctly</h3>
+        <form action="" method="post">
+            {%set m= get_flashed_messages(with_categories=True)%}
+            {%if m:%}
+                {%for x,y in m%}
+                    {% if x =="error"%}
+                        <div class="alert alert-info">{{y}}</div>
+                    {%else:%}
+                        <div class="alert alert-info">{{y}}</div>
+                    {%endif%}
+                {%endfor%}
+            {%endif%}
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <div class="mb-1">
+                {{reg.fname.label}}
+                {{reg.fname(class_='form-control')}}
+            </div>
+            <div class="mb-1">
+                {{reg.lname.label}}
+                {{reg.lname(class_='form-control')}}
+            </div>
+            <div class="mb-1">
+                {{reg.usermail.label}}
+                {{reg.usermail(class_='form-control')}}
+            </div>            
+            
+            <div class="mb-1">
+                {{reg.username.label}}
+                {{reg.username(class_='form-control')}}
+            </div>            
+            <div class="mb-1">
+                {{reg.address.label}}
+                {{reg.address(class_='form-control')}}
+            </div>
+            <div class="mb-1">
+                {{reg.phone.label}}
+                {{reg.phone(class_='form-control')}}
+            </div>
+            <div class="mb-3">
+                <label  for="department mb-3" >Department</label>
+                <select name="department" id="" class="form-control my-5 ">
+                    <option value="" class="form-control">Please Select</option>
+                {%for d in spec%}
+                <option value="{{d.specialization_id}}" class="form-control">{{d.specialization}}</option>
+                {%endfor%}
+                </select>
+                
+            </div>
+            <div class="mb-1">
+                {{reg.pwd.label}}
+                {{reg.pwd(class_='form-control')}}
+            </div>
+            <div class="mb-1">
+                {{reg.confpwd.label}}
+                {{reg.confpwd(class_='form-control')}}
+            </div>
+            <div class="mb-1">
+                {{reg.btnsubmit(class_='form-control btn btn-primary')}}
+            </div>
+        </form>
+        <h1 class="my-5 mx-5">Already Have An Account? <a href="{{url_for('doclogin')}}" class="text-danger">Sign-In</a></h1>
+    </div>
+   
+    </div>
+{% endblock%}

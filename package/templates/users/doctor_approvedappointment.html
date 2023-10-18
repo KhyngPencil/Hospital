@@ -1,0 +1,54 @@
+{% extends 'users/doclayout.html'%}
+{%block banner2%}
+<div class="row">
+    <div class="col-md-2 " style="background-color: rgb(215, 215, 215);">
+        <div class="mb-5 mt-3" >
+         <a href="/doctor/dashboard" class="btn btn-outline-primary"><img src="/static/home.png" style="height: 30px;">Home </a>
+        </div>
+        <div class="mb-5">
+            <a href="/approvedappointments/" class="btn btn-outline-primary"><img src="/static/medical-appointment.png" style="height: 30px;"> Appointments</a>
+        </div>
+        <div class="mb-5">
+            <a href="/appointments/" class="btn btn-outline-primary"><img src="/static/medical-appointment.png" style="height: 30px;">Pending Appointments</a>
+        </div>
+        <div class="mb-5">
+            <a href="/doc/preg" class="btn btn-outline-primary"><img src="/static/pregnant.png" style="height: 30px;">All Pregnant Patients</a>
+        </div>
+    </div>
+<div class="col-md-10" style="min-height: 400px;">
+    <h1 class="my-5 mx-5 text-center">All Appointments</h1>
+    <div class="col py-5 px-4">
+        {%if docdeets%}
+        <table class="table table-bordered table-striped">
+       
+            <tr>
+                <th>S/N</th>
+                <th>Patient Name</th>
+                <th>Date Of Appointment</th>                
+                <th>Status</th>
+                <th>Action</th>               
+            </tr>
+            {%for d in docdeets%}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{d.patientdeets.fullname}}</td>
+                <th>{{d.appointments_date}}</th>
+                <th>Approved</th>
+                <th> <a href="{{url_for('doc_diagnosis_feedback',id=d.appointments_id)}}" class="btn btn-success">Diagnosis Feedback</a>
+                    <a href="{{url_for('doc_paitentdetails',id=d.patientdeets.user_id)}}" class="btn btn-primary">About Patient</a>
+                </th>
+            </tr>
+            {%endfor%}
+            
+            
+            {%else%}
+            <div >
+                <h1 class="alert alert-info">No Appointments</h1>
+            </div>
+            {%endif%}
+        
+       </table>
+      </div>
+</div>
+</div>
+{% endblock%}

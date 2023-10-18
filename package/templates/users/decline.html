@@ -1,0 +1,44 @@
+{% extends 'users/doclayout.html'%}
+{%block banner2%}
+<div class="row">
+    <div class="col-md-2 " style="border: 1px solid blue; min-height: 100px; background-color: rgb(215, 215, 215);">
+        <div class="mb-5 mt-3" >
+         <a href="/doctor/dashboard" class="btn btn-outline-primary"><img src="/static/home.png" style="height: 30px;">Home </a>
+        </div>
+        <div class="mb-5">
+            <a href="/approvedappointments/" class="btn btn-outline-primary"><img src="/static/medical-appointment.png" style="height: 30px;"> Appointments</a>
+        </div>
+        <div class="mb-5">
+            <a href="/appointments/" class="btn btn-outline-primary"><img src="/static/medical-appointment.png" style="height: 30px;">Pending Appointments</a>
+        </div>
+    </div>
+<div class="col-md-10" style="border: 1px solid green; min-height: 400px;">
+    <div class="row">
+    <div class="col-12">
+    <h1 class="py-5 mx-5 text-center" >Decline Appointment</h1>
+    </div>
+    <div class="col-12 py-5 px-4">
+       <form action="" method="post">
+        {%set m= get_flashed_messages(with_categories=True)%}
+        {%if m:%}
+            {%for x,y in m%}
+                {% if x =="error"%}
+                    <div class="alert alert-info">{{y}}</div>
+                {%else:%}
+                    <div class="alert alert-info">{{y}}</div>
+                {%endif%}
+            {%endfor%}
+            {%endif%}
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <div class="mb-1">
+                {{dec.declinereasons.label}}
+                {{dec.declinereasons(class_=('form-control'))}}
+            </div>
+            {{dec.decbtnsubmit(class_=('form-control btn btn-outline-success'))}}
+       </form>
+        
+       </div>
+       </div>
+</div>
+</div>
+{% endblock%}

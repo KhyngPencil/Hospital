@@ -1,0 +1,64 @@
+{% extends 'admin/admlayout.html'%}
+{%block banner2%}
+<div class="row">
+<div class="col-md-2 " style=" min-height: 100px; background-color: rgb(215, 215, 215);">
+    <div class="mb-5 mt-3" >
+     <a href="/admin/dashboard" class="btn btn-outline-primary"><img src="/static/home.png" style="height: 30px;">Home </a>
+    </div>
+    <div class="mb-5">
+        <a href="/admin/allpatients/" class="btn btn-outline-primary"><img src="" style="height: 30px;"> Patients</a>
+    </div>
+    <div class="mb-5">
+        <a href="/admin/alldoctors/" class="btn btn-outline-primary"><img src="" style="height: 30px;">Doctors</a>
+    </div>
+    <div class="mb-5">
+        <a href="/admin/allappointments" class="btn btn-outline-primary"><img src="" style="height: 30px;">Patient Appointments</a>
+    </div>
+    <div class="mb-5">
+        <a href="/admin/specs" class="btn btn-outline-primary"><img src="" style="height: 30px;">Specialization</a>
+    </div>
+    <div class="mb-5">
+        <a href="/admin/aliments" class="btn btn-outline-primary"><img src="" style="height: 30px;">Aliments</a>
+    </div>
+    <div class="mb-5">
+        <a href="/admin/diagnosis" class="btn btn-outline-primary"><img src="" style="height: 30px;">Ailments And Diagnosis</a>
+    </div>
+    <div class="mb-5">
+        <a href="/admin/preg/" class="btn btn-outline-primary"><img src="" style="height: 30px;">Pregnant Patients</a>
+    </div>
+</div>
+<div class="col-md-10" style="min-height: 400px;">
+    <div class="row">
+    <div class="col-12">
+    <h1 class="py-5 mx-5 text-center my-3" >All Patients Ailments And Diagnosis Feedback</h1>
+    </div>
+    <div class="col-12 py-5 px-4">
+        <table class="table table-bordered table-striped">
+         <thead>
+             <tr>
+                 <th>S/N</th>
+                 <th>Patient Fullname</th>
+                 <th>Doctor</th>
+                 <th>Patient Aliment</th>
+                 <th>Date</th>
+                 <th>Doctor Feedback</th>
+                                
+             </tr>
+             {%for dia in dia%}
+             <tr>
+                 <td>{{loop.index}}</td>
+                 <td>{{dia.patdeets.fullname}}</td>
+                 <td>{{dia.docdeets.doctorfullname}}</td>
+                 <td>{{dia.aildeets.ailments}}</td>
+                 <td>{{dia.diagnosis_date}}</td>
+                 <td> {{dia.advice}}</td>
+                 
+             </tr>
+             {%endfor%}
+         </thead>
+        </table>
+       </div>
+       </div>
+</div>
+</div>
+{% endblock%}

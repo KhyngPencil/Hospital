@@ -1,0 +1,23 @@
+{% extends 'users/doclayout.html'%}
+{%block banner2%}
+<div class="row">
+<div class="col-md-2 " style=" background-color: rgb(215, 215, 215);">
+    <div class="mb-5 mt-3" >
+     <a href="/doctor/dashboard" class="btn btn-outline-primary"><img src="/static/home.png" style="height: 30px;">Home </a>
+    </div>
+    <div class="mb-5">
+        <a href="/approvedappointments/" class="btn btn-outline-primary"><img src="/static/medical-appointment.png" style="height: 30px;"> Appointments</a>
+    </div>
+    <div class="mb-5">
+        <a href="/appointments/" class="btn btn-outline-primary"><img src="/static/medical-appointment.png" style="height: 30px;">Pending Appointments</a>
+    </div>
+    <div class="mb-5">
+        <a href="/doc/preg" class="btn btn-outline-primary"><img src="/static/pregnant.png" style="height: 30px;">All Pregnant Patients</a>
+    </div>
+</div>
+<div class="col-md-10" style="border: 1px solid green; min-height: 400px;">
+    <h1 class="my-5 mx-5 px-5">Welcome Doctor {{docdeets.doctorfullname}}</h1>
+    <h1 class="my-5 mx-5 px-5">This Is Your Dashboard</h1>
+</div>
+</div>
+{% endblock%}
